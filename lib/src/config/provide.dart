@@ -14,7 +14,6 @@ class ConfigProvide with ChangeNotifier {
 
   Future $getTheme() async {
     String _theme = await SpUtil.preferences.getString("theme");
-    print(_theme);
     if (_theme != null) {
       $setTheme(_theme);
     }

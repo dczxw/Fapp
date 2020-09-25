@@ -37,7 +37,6 @@ class _MainAppState extends State<MainApp> {
 
     if (isLogin != 1) {
       return MaterialApp(
-        title: '智能App',
         onGenerateRoute: Routes.router.generator,
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -49,9 +48,7 @@ class _MainAppState extends State<MainApp> {
 
     return Provide<ConfigProvide>(
       builder: (context, child, configProvide) {
-        Provide.value<ConfigProvide>(context).$getTheme(); //修改当前主题
         return MaterialApp(
-          title: '智能App',
           onGenerateRoute: Routes.router.generator,
           theme: AppTheme.getThemeData(configProvide.theme),
           home: HomePage(),
