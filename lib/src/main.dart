@@ -48,9 +48,10 @@ class _MainAppState extends State<MainApp> {
 
     return Provide<ConfigProvide>(
       builder: (context, child, configProvide) {
+        String theme = SpUtil.preferences.getString("theme");
         return MaterialApp(
           onGenerateRoute: Routes.router.generator,
-          theme: AppTheme.getThemeData(configProvide.theme),
+          theme: AppTheme.getThemeData(theme),
           home: HomePage(),
         );
       },

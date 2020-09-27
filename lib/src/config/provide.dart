@@ -10,10 +10,11 @@ class ConfigProvide with ChangeNotifier {
   }
 
 // 主题
-  String theme = 'light';
+  String theme = 'dark';
 
   Future $getTheme() async {
     String _theme = await SpUtil.preferences.getString("theme");
+    print(_theme);
     if (_theme != null) {
       $setTheme(_theme);
     }

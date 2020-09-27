@@ -1,6 +1,8 @@
 import 'package:fapp/src/pages/drawer/message.dart';
 import 'package:fapp/src/pages/drawer/setting.dart';
 import 'package:fapp/src/pages/home.dart';
+import 'package:fapp/src/pages/images/imageDetail.dart';
+import 'package:fapp/src/pages/images/imageList.dart';
 import 'package:fapp/src/pages/login/login.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,19 @@ var routeMap = {
   "/setting": Handler(
       handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     return SettingPage();
-  })
+  }),
+  "/imageList": Handler(
+      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    String typeId=params['id'].first;
+        String typeName=params['title'].first;
+    return ImageListPage(typeId:typeId,typeName:typeName);
+  }),
+  "/imageDetail": Handler(
+      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+        String img=params['img'].first;
+        String id=params['id'].first;
+        return ImageDetailPage(url:img,id:id);
+      })
 };
 
 class Routes {
@@ -51,9 +65,7 @@ class Routes {
     });
   }
 
-  static Future jump(BuildContext context, String path,
-      {Map<String, dynamic> params,
-      TransitionType transition = TransitionType.native}) {
+  static Future jump(BuildContext context, String path, {Map<String, dynamic> params, TransitionType transition = TransitionType.native}) {
     String query = "";
     if (params != null) {
       int index = 0;

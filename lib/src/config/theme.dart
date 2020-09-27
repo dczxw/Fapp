@@ -27,7 +27,7 @@ Map materialColor = { // 主副颜色
 
 
 class AppTheme {
-  static Map mainColor = materialColor['light'];   // 默认颜色
+  static Map mainColor = materialColor['dark'];   // 默认颜色
   static getThemeData(String theme) {  // 获取theme方法： getThemeData();
 
 
