@@ -12,39 +12,42 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
-  List<dynamic> dataList = new List();
+  List dataList = new List();
   int page = 1;
   bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
+    loadData();
+  }
+
+  void loadData() async {
+    var response = await getNews(page);
+    var data = response.data;
+     data = json.decode(data.substring(22, data.length - 1));
+    setState(() {
+      dataList = data['data']['newsstream'];
+    });
+  }
+
+  Widget buildContent() {
+    if (dataList.length > 0) {
+      return ListView.builder(
+          itemCount: 10,
+          itemExtent: 100,
+          itemBuilder: (BuildContext context, int index) {
+            return createItem(index, dataList[index]);
+          });
+    }
+    return CupertinoActivityIndicator(animating: true, radius: 22);
   }
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      child: FutureBuilder<Response>(
-        future: getNews(page),
-        builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
-          Response response = snapshot.data;
-          var data = response.data;
-          if (data != null) {
-            data = json.decode(data.substring(22, data.length - 1));
-            var list = data['data']['newsstream'];
-            // setState(() {
-            //   dataList.addAll(list);
-            // });
-            return ListView.builder(
-                itemCount: 10,
-                itemExtent: 100,
-                itemBuilder: (BuildContext context, int index) {
-                  return createItem(index, list[index]);
-                });
-          }
-
-          return CupertinoActivityIndicator(animating: true, radius: 22);
-        },
+      child: Center(
+        child: buildContent(),
       ),
       onRefresh: _onRefresh,
     );

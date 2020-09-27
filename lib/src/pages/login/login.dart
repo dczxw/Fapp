@@ -48,6 +48,12 @@ class LoginState extends State<LoginPage> {
           TextEditingValue(text: SpUtil.preferences.getString("password")));
     }
 
+    if(_lights == null){
+      setState(() {
+        _lights = false;
+      });
+    }
+
     return WillPopScope(
       child: Scaffold(
           body: new SingleChildScrollView(
@@ -122,7 +128,7 @@ class LoginState extends State<LoginPage> {
                 ),
               ),
               Container(
-                width: ScreenUtil().setWidth(1920),
+                width: ScreenUtil().setWidth(960),
                 height: ScreenUtil().setHeight(96),
                 margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
                 decoration: BoxDecoration(

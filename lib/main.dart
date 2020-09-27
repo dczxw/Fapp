@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
-import 'config/provide.dart';
-import 'config/theme.dart';
-import 'pages/home.dart';
-import 'utils/Router.dart';
+import 'src/config/provide.dart';
+import 'src/config/theme.dart';
+import 'src/pages/home.dart';
+import 'src/utils/Router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,10 +48,9 @@ class _MainAppState extends State<MainApp> {
 
     return Provide<ConfigProvide>(
       builder: (context, child, configProvide) {
-        String theme = SpUtil.preferences.getString("theme");
         return MaterialApp(
           onGenerateRoute: Routes.router.generator,
-          theme: AppTheme.getThemeData(theme),
+          theme: AppTheme.getThemeData(configProvide.theme),
           home: HomePage(),
         );
       },
