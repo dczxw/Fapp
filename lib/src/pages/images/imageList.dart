@@ -172,6 +172,7 @@ class _ImageListPageState extends State<ImageListPage> {
     Map<String, dynamic> param = {
       "img": item["img"],
       "id": item["id"],
+      "favs": item["favs"].toString(),
     };
 
     Routes.jump(context, "/imageDetail", params: param);

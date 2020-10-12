@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:fapp/src/pages/login/login.dart';
 import 'package:fapp/src/utils/SpUtil.dart';
+import 'package:fapp/src/utils/TextUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,9 +49,13 @@ class _MainAppState extends State<MainApp> {
 
     return Provide<ConfigProvide>(
       builder: (context, child, configProvide) {
+        String theme = SpUtil.preferences.getString("theme");
+        if(TextUtils.isEmpty(theme)){
+          theme = configProvide.theme;
+        }
         return MaterialApp(
           onGenerateRoute: Routes.router.generator,
-          theme: AppTheme.getThemeData(configProvide.theme),
+          theme: AppTheme.getThemeData(theme),
           home: HomePage(),
         );
       },

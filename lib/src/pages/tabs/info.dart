@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:dio/dio.dart';
 import 'package:fapp/src/api/info.dart';
 import 'package:fapp/src/utils/AppUtils.dart';
 import 'package:flutter/cupertino.dart';

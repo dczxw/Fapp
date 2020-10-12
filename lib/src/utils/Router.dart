@@ -9,34 +9,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 var routeMap = {
-  "/login": Handler(
-      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  "/login": Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     return LoginPage();
   }),
-  "/home": Handler(
-      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  "/home": Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     return HomePage();
   }),
-  "/message": Handler(
-      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  "/message": Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     return MessagePage();
   }),
-  "/setting": Handler(
-      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  "/setting": Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     return SettingPage();
   }),
-  "/imageList": Handler(
-      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-    String typeId=params['id'].first;
-        String typeName=params['title'].first;
-    return ImageListPage(typeId:typeId,typeName:typeName);
+  "/imageList": Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    String typeId = params['id'].first;
+    String typeName = params['title'].first;
+    return ImageListPage(typeId: typeId, typeName: typeName);
   }),
-  "/imageDetail": Handler(
-      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-        String img=params['img'].first;
-        String id=params['id'].first;
-        return ImageDetailPage(url:img,id:id);
-      })
+  "/imageDetail": Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    String img = params['img'].first;
+    String id = params['id'].first;
+    String favs = params['favs'].first;
+    return ImageDetailPage(url: img, id: id, favs: favs);
+  })
 };
 
 class Routes {
@@ -53,8 +48,7 @@ class Routes {
   static void configureRoutes() {
     //路由配置
     //找不到路由
-    router.notFoundHandler = new Handler(
-        handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    router.notFoundHandler = new Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
       print('ERROR====>ROUTE WAS NOT FONUND!!!');
     });
 
@@ -65,7 +59,8 @@ class Routes {
     });
   }
 
-  static Future jump(BuildContext context, String path, {Map<String, dynamic> params, TransitionType transition = TransitionType.native}) {
+  static Future jump(BuildContext context, String path,
+      {Map<String, dynamic> params, TransitionType transition = TransitionType.native}) {
     String query = "";
     if (params != null) {
       int index = 0;

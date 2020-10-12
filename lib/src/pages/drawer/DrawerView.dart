@@ -52,8 +52,9 @@ class _DrawerViewState extends BaseState<DrawerView> {
                 color: Theme.of(context).accentColor,
               ),
               title: Text(
-                'Messages',
+                '消息',
                 style: TextStyle(
+                  fontSize: 16,
                   color: Theme.of(context).accentColor,
                 ),
               ),
@@ -67,8 +68,9 @@ class _DrawerViewState extends BaseState<DrawerView> {
                   Icons.account_circle,
                   color: Theme.of(context).accentColor,
                 ),
-                title: Text('theme',
+                title: Text('主题',
                     style: TextStyle(
+                      fontSize: 16,
                       color: Theme.of(context).accentColor,
                     )),
                 onTap: () => {onTheme(context)},
@@ -80,8 +82,9 @@ class _DrawerViewState extends BaseState<DrawerView> {
                   Icons.settings,
                   color: Theme.of(context).accentColor,
                 ),
-                title: Text('Settings',
+                title: Text('我的',
                     style: TextStyle(
+                      fontSize: 16,
                       color: Theme.of(context).accentColor,
                     )),
                 onTap: () => {onSetting(context)},
@@ -93,8 +96,9 @@ class _DrawerViewState extends BaseState<DrawerView> {
                 Icons.exit_to_app,
                 color: Theme.of(context).accentColor,
               ),
-              title: Text('Logout',
+              title: Text('注销',
                   style: TextStyle(
+                    fontSize: 16,
                     color: Theme.of(context).accentColor,
                   )),
               onTap: () => {onLogout(context)},
