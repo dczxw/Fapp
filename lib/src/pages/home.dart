@@ -1,7 +1,7 @@
 import 'package:fapp/src/base/BaseState.dart';
 import 'package:fapp/src/pages/drawer/DrawerView.dart';
 import 'package:fapp/src/pages/tabs/image.dart';
-import 'package:fapp/src/pages/tabs/info.dart';
+import 'package:fapp/src/pages/tabs/top.dart';
 import 'package:fapp/src/pages/tabs/user.dart';
 import 'package:fapp/src/pages/tabs/video.dart';
 import 'package:fapp/src/utils/AppUtils.dart';
@@ -51,7 +51,7 @@ class _HomePageState extends BaseState<HomePage>
           controller: tabController,
           children: <Widget>[
             //创建之前写好的三个页面，万物皆是Widget
-            new InfoPage(),
+            new TopPage(),
             new VideoPage(),
             new ImagePage(),
             new UserPage(),

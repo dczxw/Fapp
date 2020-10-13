@@ -1,6 +1,7 @@
 import 'package:fapp/src/pages/drawer/message.dart';
 import 'package:fapp/src/pages/drawer/setting.dart';
 import 'package:fapp/src/pages/home.dart';
+import 'package:fapp/src/pages/home/HotDetail.dart';
 import 'package:fapp/src/pages/images/imageDetail.dart';
 import 'package:fapp/src/pages/images/imageList.dart';
 import 'package:fapp/src/pages/login/login.dart';
@@ -31,7 +32,13 @@ var routeMap = {
     String id = params['id'].first;
     String favs = params['favs'].first;
     return ImageDetailPage(url: img, id: id, favs: favs);
-  })
+  }),
+  "/hotDetail": Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    String title = params['title'].first;
+    String icon = params['icon'].first;
+    String url = params['url'].first;
+    return HotDetail(url: url, icon: icon, title: title);
+  }),
 };
 
 class Routes {
@@ -60,7 +67,7 @@ class Routes {
   }
 
   static Future jump(BuildContext context, String path,
-      {Map<String, dynamic> params, TransitionType transition = TransitionType.native}) {
+      {Map<String, dynamic> params, TransitionType transition = TransitionType.inFromRight }) {
     String query = "";
     if (params != null) {
       int index = 0;
@@ -77,6 +84,7 @@ class Routes {
     }
     print('我是navigateTo传递的参数：$query');
     path = path + query;
+
     return router.navigateTo(context, path, transition: transition);
   }
 }

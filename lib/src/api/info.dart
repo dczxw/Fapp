@@ -13,7 +13,14 @@ Future<Response<dynamic>> getNews(int page) async {
   ];
 
   return await DioUtil.dio.get(list.join());
+}
 
-  // return await DioUtil.dio.get(
-  //     "http://shankapi.ifeng.com/shanklist/_/getColumnInfo_seo/_/dynamicFragment/6714844336023928914/1601024220000/20/3-35191-/getColumnInfoCallback?callback=getColumnInfoCallback&_=16010242200001");
+Future<Response<dynamic>> getHotDetail(String url, String type) async {
+  String path = "http://10.3.4.32:8000/t/rss/detail";
+  Map<String, dynamic> param = {
+    "type": type,
+    "url": url,
+  };
+
+  return await DioUtil.dio.post(path, data: param);
 }
