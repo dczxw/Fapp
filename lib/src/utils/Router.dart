@@ -2,12 +2,12 @@ import 'package:fapp/src/pages/drawer/message.dart';
 import 'package:fapp/src/pages/drawer/setting.dart';
 import 'package:fapp/src/pages/home.dart';
 import 'package:fapp/src/pages/home/HotDetail.dart';
+import 'package:fapp/src/pages/home/WebViewPage.dart';
 import 'package:fapp/src/pages/images/imageDetail.dart';
 import 'package:fapp/src/pages/images/imageList.dart';
 import 'package:fapp/src/pages/login/login.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart'hide Router;
 
 var routeMap = {
   "/login": Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -38,6 +38,10 @@ var routeMap = {
     String icon = params['icon'].first;
     String url = params['url'].first;
     return HotDetail(url: url, icon: icon, title: title);
+  }),
+  "/webview": Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    String url = params['url'].first;
+    return WebViewPage(url: url);
   }),
 };
 

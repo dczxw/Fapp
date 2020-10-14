@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:fapp/src/api/info.dart';
 import 'package:fapp/src/pages/home/hot_today_item.dart';
+import 'package:fapp/src/utils/Router.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart' ;
 
 class HotDetail extends StatefulWidget {
   String title;
@@ -72,49 +72,58 @@ class _HotDetailState extends State<HotDetail> {
   Widget buildItem(int index, BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: 80,
-          padding: EdgeInsets.all(5),
-          decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: Color(0xffe5e5e5)))),
-          child: Stack(
-            children: [
-              Positioned(
-                child: Text('${index + 1}、', style: TextStyle(fontSize: 18, color: Colors.red)),
-                left: 0,
-                top: 0,
-              ),
-              Positioned(
-                child: Text(
-                  '${dataList[index]['title']}',
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: TextStyle(fontSize: 16),
+        GestureDetector(
+          child: Container(
+            height: 80,
+            padding: EdgeInsets.all(5),
+            decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: Color(0xffe5e5e5)))),
+            child: Stack(
+              children: [
+                Positioned(
+                  child: Text('${index + 1}、', style: TextStyle(fontSize: 18, color: Colors.red)),
+                  left: 0,
+                  top: 0,
                 ),
-                left: 30,
-                top: 3,
-                right: 35,
-              ),
-              Positioned(
-                child: Text(
-                  '${dataList[index]['desc']}',
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: TextStyle(fontSize: 13, color: Colors.blue),
+                Positioned(
+                  child: Text(
+                    '${dataList[index]['title']}',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  left: 30,
+                  top: 3,
+                  right: 35,
                 ),
-                left: 30,
-                right: 25,
-                bottom: 0,
-              ),
-              Positioned(
-                child: Icon(
-                  Icons.chevron_right,
-                  size: 25,
+                Positioned(
+                  child: Text(
+                    '${dataList[index]['desc']}',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyle(fontSize: 13, color: Colors.blue),
+                  ),
+                  left: 30,
+                  right: 25,
+                  bottom: 0,
                 ),
-                right: 5,
-                bottom: 20,
-              )
-            ],
+                Positioned(
+                  child: Icon(
+                    Icons.chevron_right,
+                    size: 25,
+                  ),
+                  right: 5,
+                  bottom: 20,
+                )
+              ],
+            ),
           ),
+          onTap: (){
+            Map<String, dynamic> param = {
+              "url": dataList[index]['link'],
+            };
+            print(dataList[index]['link']);
+            Routes.jump(context, "/webview", params: param);
+          },
         ),
         buildBottom(index)
       ],
