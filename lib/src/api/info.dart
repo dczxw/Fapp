@@ -16,7 +16,7 @@ Future<Response<dynamic>> getNews(int page) async {
 }
 
 Future<Response<dynamic>> getHotDetail(String url, String type) async {
-  String path = "http://10.3.4.32:8000/t/rss/detail";
+  String path = "http://api.siuper.cn/t/rss/detail";
   Map<String, dynamic> param = {
     "type": type,
     "url": url,

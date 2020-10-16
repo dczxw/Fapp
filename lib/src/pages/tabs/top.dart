@@ -1,3 +1,4 @@
+import 'package:fapp/src/pages/drawer/DrawerView.dart';
 import 'package:fapp/src/pages/home/hot_today_item.dart';
 import 'package:fapp/src/utils/Router.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,6 +14,14 @@ class _TopPageState extends State<TopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        elevation: 16,
+        child: DrawerView(),
+      ),
+      appBar: AppBar(
+        title: Text("首页"),
+        centerTitle: true,
+      ),
       body: Container(
         child: GridView(
           padding: EdgeInsets.symmetric(vertical: 0),

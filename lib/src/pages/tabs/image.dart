@@ -1,4 +1,5 @@
 import 'package:fapp/src/api/imageApi.dart';
+import 'package:fapp/src/pages/drawer/DrawerView.dart';
 import 'package:fapp/src/utils/Router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,15 +23,29 @@ class _ImagePageState extends State<ImagePage> {
   @override
   Widget build(BuildContext context) {
     int len = (_list.length/2).truncate();
-    return ListView.builder(
-        itemCount: len, itemExtent: 120, itemBuilder: showItem);
+
+    return Scaffold(
+      drawer: Drawer(
+        elevation: 16,
+        child: DrawerView(),
+      ),
+      appBar: AppBar(
+        title: Text("壁纸"),
+        centerTitle: true,
+      ),
+      body:ListView.builder(
+          itemCount: len, itemExtent: 120, itemBuilder: showItem) ,
+    );
+
   }
 
   void loadData() async{
     var res = await getImageType("/v1/vertical/category");
-    setState(() {
-      _list = res['res']['category'];
-    });
+    if(mounted){
+      setState(() {
+        _list = res['res']['category'];
+      });
+    }
   }
 
   Widget showItem(BuildContext context, int index) {

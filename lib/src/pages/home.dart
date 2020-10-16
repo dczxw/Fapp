@@ -2,7 +2,7 @@ import 'package:fapp/src/base/BaseState.dart';
 import 'package:fapp/src/pages/drawer/DrawerView.dart';
 import 'package:fapp/src/pages/tabs/image.dart';
 import 'package:fapp/src/pages/tabs/top.dart';
-import 'package:fapp/src/pages/tabs/user.dart';
+import 'package:fapp/src/pages/tabs/book.dart';
 import 'package:fapp/src/pages/tabs/video.dart';
 import 'package:fapp/src/utils/AppUtils.dart';
 import 'package:flutter/material.dart';
@@ -39,14 +39,6 @@ class _HomePageState extends BaseState<HomePage>
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Scaffold(
-        drawer: Drawer(
-          elevation: 16,
-          child: DrawerView(),
-        ),
-        appBar: AppBar(
-          title: Text(title),
-          centerTitle: true,
-        ),
         body: TabBarView(
           controller: tabController,
           children: <Widget>[
@@ -54,7 +46,7 @@ class _HomePageState extends BaseState<HomePage>
             new TopPage(),
             new VideoPage(),
             new ImagePage(),
-            new UserPage(),
+            new BookPage(),
           ],
         ),
         bottomNavigationBar: Container(
